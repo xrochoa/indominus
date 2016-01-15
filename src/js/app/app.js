@@ -17,12 +17,28 @@ var svg = d3.select("body").append("svg")
     .attr("height", height)
     .attr('id', 'svg');
 
-svg.on("ontouchstart" in document ? "touchmove" : "mousemove", particle)
+svg.on("mousemove", bothFx);
+svg.on("touchmove", bgColorMobile);
+
+
+function bothFx() {
+    particle.apply(this);
+    bgColorDesktop.apply(this);
+}
+
 
 d3.select(window).on('resize', resize);
 
-function particle() {
+
+function bgColorMobile() {
+    d3.select('body').style("background-color", d3.hsl((i = (i + 6) % 360), 1, .8));
+}
+
+function bgColorDesktop() {
     d3.select('body').style("background-color", d3.hsl((i = (i + 1) % 360), 1, .8));
+}
+
+function particle() {
 
     var m = d3.mouse(this);
     svg.insert("circle", "rect")
@@ -57,7 +73,7 @@ d3.select('nav').html(function() {
     for (var i = 9; i >= 0; i--) {
         frog = frog + '<img src="img/frogw.png" class="froggy" style="opacity:' + (i / 10) + ';height:20px; padding: 0 10px;"/>';
     };
-    var social = '<ul class="soc"><li><a class="soc-facebook soc-icon-last" href="https://www.facebook.com/profile.php?id=100008934930345"></a></li></ul>';
+    var social = '<ul class="soc"><li><a class="soc-facebook soc-icon-last" href="https://www.facebook.com/profile.php?id=100008934930345"><img src="img/fb-art.jpg" /></a></li></ul>';
 
 
     return banner + frog + social;
