@@ -194,5 +194,5 @@ gulp.task('server', function() {
 
 // Default Task
 gulp.task('default', function() {
-    runSequence('clean', 'lintjs', 'bundlejs', 'css', 'html', 'img', 'watch', 'server');
+    runSequence('clean', 'lintjs', 'bundlejs', 'css', 'html', 'img');
 });
